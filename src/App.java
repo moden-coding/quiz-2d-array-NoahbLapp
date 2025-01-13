@@ -57,7 +57,29 @@ public class App {
 
 
     public static int columnRowAddition(int[][] arr, int row, int col){
-        
-        return -1;//placeholder
+        try{
+            int sum = 0;
+            int[] usedNums = new int[arr.length];
+            for(int i = 0; i<arr.length; i++){
+                usedNums[i] = arr[row][i];
+                sum += arr[row][i];
+            }
+            for(int i = 0; i<arr.length; i++){
+                boolean hasBeenUsed = false;
+                for(int num: usedNums){
+                    if(num == arr[i][col]){
+                        hasBeenUsed = true;
+                        break;
+                    }
+                }
+                if(hasBeenUsed){
+                    continue;
+                }
+                sum += arr[i][col];
+            }
+            return sum;
+        }catch(IndexOutOfBoundsException e){
+            return -1;
+        }
     }
 }
